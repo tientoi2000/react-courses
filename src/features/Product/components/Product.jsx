@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatPrice } from 'utils';
 
 Product.propTypes = {
-    products: PropTypes.object,
+    product: PropTypes.object,
 };
 
 function Product({ product }) {

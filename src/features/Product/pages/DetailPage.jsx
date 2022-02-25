@@ -1,6 +1,8 @@
-import { Box, Container, Grid, Paper } from '@mui/material';
+import { Box, Container, Grid, LinearProgress, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { addToCart } from 'features/Cart/cartSlice';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, useMatch } from 'react-router-dom';
 import AddToCartForm from '../components/AddToCartForm';
 import ProductAdditional from '../components/ProductAdditional';
@@ -13,7 +15,9 @@ import useProductDetail from '../hooks/useProductDetail';
 
 
 const useStyles = makeStyles({
-    root: {},
+    root: {
+        paddingBottom: '24px',
+    },
 
     left: {
         width: '400px',
@@ -29,16 +33,24 @@ const useStyles = makeStyles({
 
 function DetailPage() {
     const classes = useStyles();
-    const { params: { productId } } = useMatch("/products/:productId");
+    const { params: { productId } } = useMatch("/products/:productId/*");
 
     const { product, loading } = useProductDetail(productId);
+    const dispatch = useDispatch()
 
     if (loading) {
-        return <Box>Loading...</Box>
+        return <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%' }}>
+            <LinearProgress />
+        </Box>
     }
 
-    const handleAddToCartSubmit = (formValues) => {
-        console.log(formValues);
+    const handleAddToCartSubmit = ({ quantity }) => {
+        const action = addToCart({
+            id: product.id,
+            product,
+            quantity,
+        });
+        dispatch(action);
     }
 
     return (
@@ -59,8 +71,8 @@ function DetailPage() {
                 <ProductMenu />
                 <Routes>
                     <Route index element={<ProductDescription product={product} />} />
-                    <Route path="additional" element={<ProductAdditional />} />
-                    <Route path="reviews" element={<ProductReviews />} />
+                    <Route path="/additional" element={<ProductAdditional />} />
+                    <Route path="/reviews" element={<ProductReviews />} />
                 </Routes>
             </Container>
         </Box>

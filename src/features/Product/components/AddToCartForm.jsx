@@ -17,6 +17,7 @@ function AddToCartForm({ onSubmit = null }) {
             .number()
             .required('Please enter quantity')
             .min(1, 'Minimum value is 1')
+            .max(20, 'Maximum value is 20')
             .typeError('Please enter a number'),
 
     });

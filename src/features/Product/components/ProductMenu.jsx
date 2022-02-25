@@ -1,4 +1,4 @@
-import { Box, Link } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -20,10 +20,11 @@ function ProductMenu(props) {
                 listStyleType: 'none',
 
                 '& > li': {
-                    padding: '16px 32px'
+                    padding: '16px 32px',
                 },
 
                 '& > li > a': {
+                    textDecoration: 'none',
                     color: '#555555',
 
                     '&: hover': {
@@ -31,39 +32,21 @@ function ProductMenu(props) {
                     },
                     '&.active': {
                         color: '#3f50b5',
+                        textDecoration: 'underline',
                     }
                 }
             }}
         >
             <li>
-                <Link
-                    component={NavLink}
-                    underline="hover"
-                    to=""
-                >
-                    Description
-                </Link>
-
+                <NavLink end to="">Description</NavLink>
             </li>
             <li>
-                <Link
-                    component={NavLink}
-                    underline="hover"
-                    to="additional"
-                >
-                    Additional
-                </Link>
-            </li>
+                <NavLink end to="additional">Additional</NavLink>
+            </li >
             <li>
-                <Link
-                    component={NavLink}
-                    underline="hover"
-                    to="reviews"
-                >
-                    Reviews
-                </Link>
-            </li>
-        </Box>
+                <NavLink end to="reviews">Reviews</NavLink>
+            </li >
+        </Box >
     );
 }
 

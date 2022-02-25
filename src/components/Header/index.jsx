@@ -1,6 +1,6 @@
-import { AccountCircle, Close } from '@mui/icons-material';
+import { AccountCircle, Close, ShoppingCart } from '@mui/icons-material';
 import CodeIcon from '@mui/icons-material/Code';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { Badge, IconButton, Menu, MenuItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,10 +12,11 @@ import { makeStyles } from '@mui/styles';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import { logout } from 'features/Auth/userSlice';
+import { cartItemsCountSelector } from 'features/Cart/selectors';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 
@@ -39,7 +40,10 @@ const MODE = {
 export default function Header() {
     const dispatch = useDispatch();
     const loggedInUser = useSelector(state => state.user.current);
+    const cartItemsCount = useSelector(cartItemsCountSelector)
+    const history = useNavigate();
     const isLoggedIn = !!loggedInUser.id;
+
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
     const [anchorEl, setAnchorEl] = useState(null)
@@ -63,6 +67,10 @@ export default function Header() {
     const handleLogoutClick = () => {
         const action = logout();
         dispatch(action);
+    };
+
+    const handleCartClick = () => {
+        history('/cart');
     }
 
     // const handleBackdropClick = () => {
@@ -101,6 +109,12 @@ export default function Header() {
                             Login
                         </Button>
                     )}
+
+                    <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={handleCartClick}>
+                        <Badge badgeContent={cartItemsCount} color="error">
+                            <ShoppingCart />
+                        </Badge>
+                    </IconButton>
 
                     {isLoggedIn && (
                         <IconButton color="inherit" onClick={handleUserClick}>
