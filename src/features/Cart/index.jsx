@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { cartItemsCountSelector, cartTotalSelector } from 'features/Cart/selectors';
 import { Box, Container, Grid, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { cartItemsCountSelector } from 'features/Cart/selectors';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import DetailCart from './CartItems/DetailCart';
 import TotalCart from './CartItems/TotalCart';
 
@@ -24,9 +23,7 @@ const useStyles = makeStyles({
 });
 function CartFeature() {
     const classes = useStyles();
-    const cartTotal = useSelector(cartTotalSelector)
     const itemTotal = useSelector(cartItemsCountSelector)
-    const product = useSelector(state => state.cart)
 
 
     return (
