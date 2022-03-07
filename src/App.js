@@ -7,6 +7,7 @@ import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
 import CartFeature from './features/Cart';
+import Photo from 'features/Photo';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/albums" element={<AlbumFeature />} />
         <Route path="/products/*" element={<ProductFeature />} />
         <Route path="/cart" element={<CartFeature />} />
+        <Route path="/photos/*" element={<Photo />} />
 
         <Route element={<NotFound />} />
       </Routes>

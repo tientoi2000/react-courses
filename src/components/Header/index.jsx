@@ -12,12 +12,14 @@ import { makeStyles } from '@mui/styles';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import { logout } from 'features/Auth/userSlice';
+import MiniCart from 'features/Cart/CartItems/MiniCart';
+import { hideMiniCart } from 'features/Cart/cartSlice';
 import { cartItemsCountSelector } from 'features/Cart/selectors';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-
+import './styles.scss';
 
 
 const useStyles = makeStyles({
@@ -43,6 +45,10 @@ export default function Header() {
     const cartItemsCount = useSelector(cartItemsCountSelector)
     const history = useNavigate();
     const isLoggedIn = !!loggedInUser.id;
+    const hideCart = useSelector(state => state.cart.showMiniCart)
+
+
+
 
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState(MODE.LOGIN);
@@ -69,9 +75,14 @@ export default function Header() {
         dispatch(action);
     };
 
-    const handleCartClick = () => {
+    const handleCartClick = (state) => {
+
+        const action = hideMiniCart(state)
+        dispatch(action);
         history('/cart');
     }
+
+
 
     // const handleBackdropClick = () => {
 
@@ -79,7 +90,7 @@ export default function Header() {
 
     const classes = useStyles()
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, position: 'relative' }}>
             <AppBar position="static">
                 <Toolbar>
 
@@ -96,6 +107,12 @@ export default function Header() {
                     </Typography>
 
 
+                    <NavLink className={classes.link} to="/photos">
+                        <Button color="inherit">Photo</Button>
+                    </NavLink>
+                    <NavLink className={classes.link} to="/products">
+                        <Button color="inherit">Product</Button>
+                    </NavLink>
                     <NavLink className={classes.link} to="/todos">
                         <Button color="inherit">Todos</Button>
                     </NavLink>
@@ -115,6 +132,12 @@ export default function Header() {
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
+
+                    {hideCart && <div className="mini-cart">
+                        <MiniCart />
+                    </div>
+                    }
+
 
                     {isLoggedIn && (
                         <IconButton color="inherit" onClick={handleUserClick}>

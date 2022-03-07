@@ -1,0 +1,28 @@
+.heading-cart {
+    width: 882px;
+    height: 54px;
+    line-height: 44px;
+    display: flex;
+    flex-direction: row;
+}
+
+.heading-product {
+    margin-left: 24px;
+    font-weight: 480;
+}
+
+.heading-price {
+    margin-left: 350px;
+    opacity: .8;
+
+}
+
+.heading-quantity {
+    margin-left: 140px;
+    opacity: .8;
+}
+
+.heading-delete {
+    margin-left: 90px;
+    opacity: .8;
+}

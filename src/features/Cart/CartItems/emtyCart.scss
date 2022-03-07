@@ -1,0 +1,21 @@
+.emty-cart {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    margin-top: 150px;
+}
+
+.img {
+    width: 120px;
+}
+
+.span {
+    opacity: .5;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.btn {
+    margin-top: 20px;
+}
