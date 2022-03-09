@@ -1,12 +1,12 @@
 import Header from 'components/Header';
 import NotFound from 'components/NotFound';
+import Photo from 'features/Photo';
 import ProductFeature from 'features/Product';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AlbumFeature from './features/Album';
-import TodoFeature from './features/Todo';
 import CartFeature from './features/Cart';
-import Photo from 'features/Photo';
+import TodoFeature from './features/Todo';
 
 function App() {
   return (
