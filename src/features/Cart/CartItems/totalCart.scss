@@ -1,0 +1,27 @@
+.provisional {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 12px 30px 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.item1 {
+    opacity: .8;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 12px 30px 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.item3 {
+    opacity: .8;
+    font-size: 17px;
+}
+
+.item4 {
+    color: rgb(254, 56, 52);
+    font-size: 22px;
+}

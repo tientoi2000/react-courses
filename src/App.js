@@ -1,12 +1,12 @@
 import Header from 'components/Header';
 import NotFound from 'components/NotFound';
+import Photo from 'features/Photo';
 import ProductFeature from 'features/Product';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AlbumFeature from './features/Album';
-import CounterFeature from './features/Counter';
-import TodoFeature from './features/Todo';
 import CartFeature from './features/Cart';
+import TodoFeature from './features/Todo';
 
 function App() {
   return (
@@ -14,11 +14,12 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<CounterFeature />} />
+        <Route path="/" element={<ProductFeature />} />
         <Route path="/todos" element={<TodoFeature />} />
         <Route path="/albums" element={<AlbumFeature />} />
         <Route path="/products/*" element={<ProductFeature />} />
         <Route path="/cart" element={<CartFeature />} />
+        <Route path="/photos/*" element={<Photo />} />
 
         <Route element={<NotFound />} />
       </Routes>

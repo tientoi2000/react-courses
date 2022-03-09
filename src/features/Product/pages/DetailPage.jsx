@@ -1,6 +1,6 @@
 import { Box, Container, Grid, LinearProgress, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { addToCart } from 'features/Cart/cartSlice';
+import { addToCart, setQuantity } from 'features/Cart/cartSlice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useMatch } from 'react-router-dom';
@@ -51,6 +51,13 @@ function DetailPage() {
             quantity,
         });
         dispatch(action);
+
+        // const quantityProduct = setQuantity({
+        //     id: product.id,
+        //     quantity
+        // })
+        // console.log(quantityProduct);
+        // dispatch(quantityProduct);
     }
 
     return (
