@@ -28,6 +28,7 @@ function CartProduct() {
     const itemTotal = useSelector(cartItemsCountSelector)
     const product = useSelector(state => state.cart)
     const detailItem = product.cartItems
+    console.log(detailItem);
     // console.log(detailItem);
 
     return (

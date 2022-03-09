@@ -14,6 +14,7 @@ FormQuantity.propTypes = {
 function FormQuantity({ onSubmit = null }) {
     const product = useSelector(state => state.cart.cartItems)
     const quantity = product[0].quantity
+    // console.log(quantity);
 
     const schema = yup.object().shape({
         quantity: yup
